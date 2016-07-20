@@ -34,13 +34,13 @@ function add_month_select_to_calendar_widget( $calendar )
 		<?php for ($i=1; $i <= 12; $i++): ?>
 			<?php $selected = ( $i == $selected_month ) ? ' selected="selected"' : '' ?>
 			<option value="<?php echo $i ?>"<?php echo $selected ?>><?php echo date_i18n( "F", mktime( 0, 0 , 0, $i ,1 ,2000 ) ) ?></option>
-		<?php endfor ?>
+		<?php endfor; ?>
 	</select>
 	<select class="calendar-widget-control" name="year" id="calendar_widget_year">
 		<?php for ($i=$start_year; $i <= $end_year; $i++): ?>
 			<?php $selected = ( $i == $selected_year ) ? ' selected="selected"' : '' ?>
 			<option value="<?php echo $i ?>"<?php echo $selected ?>><?php echo $i ?></option>
-		<?php endfor ?>
+		<?php endfor; ?>
 	</select>
 	<script type="text/javascript">
 		jQuery('.calendar-widget-control').change(function() {
@@ -52,7 +52,7 @@ function add_month_select_to_calendar_widget( $calendar )
 			jQuery("#calendar_wrap").load("<?php echo admin_url('admin-ajax.php') ?>", data);
 		});
 	</script>
-<?
+<?php
 	$month_select = ob_get_clean();
 	
 	$calendar = preg_replace( "/<caption>(.*?)<\/caption>/", $month_select, $calendar );
@@ -71,4 +71,3 @@ function load_calendar_ajax()
 }
 add_action( 'wp_ajax_load_calendar', 'load_calendar_ajax' );
 add_action( 'wp_ajax_nopriv_load_calendar', 'load_calendar_ajax' );
-?>
