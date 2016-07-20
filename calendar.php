@@ -43,13 +43,15 @@ function add_month_select_to_calendar_widget( $calendar )
 		<?php endfor; ?>
 	</select>
 	<script type="text/javascript">
-		jQuery('.calendar-widget-control').change(function() {
-			data = {
-				action: 'load_calendar',
-				m: jQuery("#calendar_widget_month").val(),
-				y: jQuery("#calendar_widget_year").val(),
-			};
-			jQuery("#calendar_wrap").load("<?php echo admin_url('admin-ajax.php') ?>", data);
+		jQuery(function($){
+			$('.calendar-widget-control').change(function() {
+				data = {
+					action: 'load_calendar',
+					m: $("#calendar_widget_month").val(),
+					y: $("#calendar_widget_year").val(),
+				};
+				$("#calendar_wrap").load("<?php echo admin_url('admin-ajax.php') ?>", data);
+			});
 		});
 	</script>
 <?php
